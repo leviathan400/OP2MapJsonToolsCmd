@@ -5,7 +5,7 @@ using System.Reflection;
 using OP2MapJsonTools;
 using static OP2MapJsonTools.OP2MapJsonTools;
 
-// OP2MapJsonToolsConsole / OP2MapJsonToolsCmd
+// OP2MapJsonToolsCmd
 // https://github.com/leviathan400/OP2MapJsonToolsCmd
 // 
 // Console app to:
@@ -14,7 +14,7 @@ using static OP2MapJsonTools.OP2MapJsonTools;
 //
 // .NET 8 /  C# / Multi-platform Console Application
 //
-// Improvement over the original project 'JsonMap'. Meant to similar (console app) improved replacement.
+// Improvement over the original project 'JsonMap'. Meant to be a similar (console app) improved replacement.
 // https://github.com/OutpostUniverse/JsonMap
 //
 //
@@ -29,10 +29,14 @@ namespace OP2MapJsonToolsCmd
             // Get the version of the OP2MapJsonTools library
             var assembly = typeof(OP2MapJsonTools.OP2MapJsonTools).Assembly;
             var version = assembly.GetName().Version;
-            var versionString = version != null ? $"v{version.Major}.{version.Minor}.{version.Build}.{version.MinorRevision}" : "version unknown";
+            var versionStringLibrary = version != null ? $"v{version.Major}.{version.Minor}.{version.Build}.{version.MinorRevision}" : "version unknown";
 
-            Console.WriteLine("OP2MapJsonToolsCmd");
-            Console.WriteLine($"Using OP2MapJsonTools library {versionString}");
+            // Get the current version 
+            var assemblyVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+            var versionString = assemblyVersion != null ? $"v{assemblyVersion.Major}.{assemblyVersion.Minor}.{assemblyVersion.Build}" : "v0.6.5";
+
+            Console.WriteLine($"OP2MapJsonToolsCmd {versionString}");
+            Console.WriteLine($"Using OP2MapJsonTools library {versionStringLibrary}");
             Console.WriteLine("Converts Outpost 2 map files to/from JSON format");
             Console.WriteLine("===============================================");
             Console.WriteLine();
@@ -215,7 +219,7 @@ namespace OP2MapJsonToolsCmd
             OP2MapJsonTools.OP2MapJsonTools.ExportMapToJsonFile(mapFile, jsonFile, format, mapName, "", notes);
 
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Successfully converted to JSON");
+            Console.WriteLine("Successfully converted to JSON file");
             Console.ResetColor();
 
             ShowJsonFormatInfo(format);
@@ -229,7 +233,7 @@ namespace OP2MapJsonToolsCmd
             OP2MapJsonTools.OP2MapJsonTools.ExportMapFile(jsonFile, mapFile);
 
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Successfully converted to map file");
+            Console.WriteLine("Successfully converted to MAP file");
             Console.ResetColor();
         }
 
@@ -272,8 +276,9 @@ namespace OP2MapJsonToolsCmd
 
         private static void ShowVersion()
         {
+            // Get the current version 
             var assemblyVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
-            var versionString = assemblyVersion != null ? $"v{assemblyVersion.Major}.{assemblyVersion.Minor}.{assemblyVersion.Build}" : "v0.6.0";
+            var versionString = assemblyVersion != null ? $"v{assemblyVersion.Major}.{assemblyVersion.Minor}.{assemblyVersion.Build}" : "v0.6.5";
 
             Console.WriteLine($"OP2MapJsonToolsCmd {versionString}");
             Console.WriteLine("Built with OP2MapJsonTools library");
