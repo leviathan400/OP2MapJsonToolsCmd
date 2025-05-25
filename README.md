@@ -6,10 +6,12 @@
 
 Console utility application to convert Outpost 2: Divided Destiny map files to/from json format.
 
-Inspired by the original [JsonMap](https://github.com/OutpostUniverse/JsonMap) project.
-
+Inspired by the [JsonMap](https://github.com/OutpostUniverse/JsonMap) project to export maps to a readable format.
 
 Uses the [OP2MapJsonToolsLibrary](https://github.com/leviathan400/OP2MapJsonToolsLibrary) to convert to/from json.
+
+Requires the .NET 8.0 Runtime.
+
 
 ### Useage
 
@@ -60,12 +62,12 @@ Contains basic map information and metadata:
 ```json
 {
   "header": {
-    "width": 64,            // Map width in tiles
-    "height": 64,           // Map height in tiles  
-    "map": "eden01.map",    // Original filename
-    "name": "Eden Station", // Display name
-    "author": "Dynamix",    // Map creator
-    "notes": "Campaign map" // Additional notes
+    "width": 64,                // Map width in tiles
+    "height": 64,               // Map height in tiles
+    "map": "eden01.map",        // Original filename
+    "name": "Eden Campaign 01", // Display name
+    "author": "Dynamix",        // Map creator
+    "notes": "Campaign map"     // Additional notes
   }
 }
 ```
@@ -77,7 +79,7 @@ Visual layer containing tile mapping indices:
 {
   "tiles": [
     [ 1898, 1899, 1900, 1901 ],  // Row 1
-    [ 1904, 1905, 1906, 1907 ],  // Row 2  
+    [ 1904, 1905, 1906, 1907 ],  // Row 2
     [ 1910, 1911, 1912, 1913 ]   // Row 3
   ]
 }
@@ -103,7 +105,7 @@ Defines the visible/playable area for world-wrapping maps. World maps are 512 ti
 {
   "clipRect": {
     "x1": 32,   // Left boundary
-    "y1": 0,    // Top boundary  
+    "y1": 0,    // Top boundary
     "x2": 287,  // Right boundary
     "y2": 254   // Bottom boundary
   }
@@ -118,7 +120,7 @@ Complete tileset data including sources, mappings, and terrain definitions:
   "tileset": {
     "sources": [
       {
-        "filename": "well0001.bmp",
+        "filename": "well0001",
         "numTiles": 295
       }
     ],
@@ -150,7 +152,7 @@ Complete tileset data including sources, mappings, and terrain definitions:
 }
 ```
 
-### Complete Example
+### JSON Map Complete Example
 
 ```json
 {
@@ -228,7 +230,7 @@ Complete tileset data including sources, mappings, and terrain definitions:
 ## Export Format Options
 
 ### Original Format
-Flat arrays similar to the original C++ implementation:
+Flat arrays similar to the original C++ implementation (JsonMap):
 ```json
 {
   "tiles": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
